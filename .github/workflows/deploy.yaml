@@ -17,11 +17,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install mlflow==2.11.3 dagshub scikit-learn pandas numpy
-
-    - name: Run MLflow Project (Retraining)
+    
+    - name: Run MLFlow Project (Retraining)
       env:
-        MLFLOW_TRACKING_USERNAME: "luthfiamar-nich"
-        MLFLOW_TRACKING_PASSWORD: "${{ secrets.DAGSHUB_TOKEN }}"
+        DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
       run: |
         cd MLProject
+        mkdir -p ~/.config/dagshub
+        echo "token: $DAGSHUB_TOKEN" > ~/.config/dagshub/credentials
+        export MLFLOW_TRACKING_USERNAME="amar.luthfi1854"
+        export MLFLOW_TRACKING_PASSWORD=$DAGSHUB_TOKEN
+        export DAGSHUB_CLIENT_TOKEN=$DAGSHUB_TOKEN
         mlflow run . -e main --env-manager=local
