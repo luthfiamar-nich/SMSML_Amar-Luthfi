@@ -1,0 +1,12 @@
+name: credit_risk_env
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - mlflow==2.11.3
+    - dagshub
+    - scikit-learn
+    - pandas
+    - numpy
