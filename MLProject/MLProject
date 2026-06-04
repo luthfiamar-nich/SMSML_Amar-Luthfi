@@ -1,4 +1,4 @@
-name: Credit Risk Model CI
+name: Credit_Risk_Modeling
 conda_env: conda.yaml
 entry_points:
   main:
